@@ -99,6 +99,12 @@ class Install extends CI_Controller {
 				$this->load->view('install/install_page_step_3', $data);
 				break;
 			case 4:
+				$this->load->cssFile('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+				$this->load->cssFile('./application/css/install.css');
+				$this->load->cssFile('./application/third_party/bootstrap/css/bootstrap.min.css');
+				$this->load->cssFile('./application/third_party/bootstrap/css/bootstrap-responsive.min.css');
+				$this->load->jsFile('./application/third_party/jquery/jquery-1.10.0.min.js');
+
 				$data = array(
 					'step' => $step,
 					'base_url' => $this->config->item('base_url'),
@@ -207,26 +213,143 @@ class Install extends CI_Controller {
 		// DB에 접속합니다.
 		$this->load->database($config);
 
+		$this->load->dbforge();
+
+		// Projects 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('projects'))
+		{
+			$this->dbforge->add_field(array(
+				'project_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+				'project_name' => array('type' => 'VARCHAR', 'constraint' => 250),
+				'regdate' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'last_update' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'description' => array('type' => 'VARCHAR', 'constraint' => 250)
+			));
+
+			$this->dbforge->add_key('project_id', TRUE);
+			$this->dbforge->add_key('regdate');
+			$this->dbforge->add_key('last_update');
+
+			$this->dbforge->create_table('projects', TRUE);
+		}
+
+
+		// Project_events 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('project_events'))
+		{
+			$this->dbforge->add_field(array(
+				'project_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+				'event_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'event_type' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'order' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'regdate' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+			));
+
+			$this->dbforge->add_key('regdate');
+			$this->dbforge->add_key('order');
+
+			$this->dbforge->create_table('project_events', TRUE);
+		}
+
+		// Project_events 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('project_actions'))
+		{
+			$this->dbforge->add_field(array(
+				'project_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+				'event_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'action_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'action_type' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'order' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'regdate' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+			));
+
+			$this->dbforge->add_key('regdate');
+			$this->dbforge->add_key('order');
+
+			$this->dbforge->create_table('project_actions', TRUE);
+		}
+
+		// Apps 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('apps'))
+		{
+			$this->dbforge->add_field(array(
+				'app_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+				'app_name' => array('type' => 'VARCHAR', 'constraint' => 250),
+				'rated_count' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'rating_score' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'comment_count' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'description' => array('type' => 'VARCHAR', 'constraint' => 250)
+			));
+
+			$this->dbforge->add_key('app_id', TRUE);
+			$this->dbforge->add_key('rated_count');
+			$this->dbforge->add_key('rating_score');
+			$this->dbforge->add_key('comment_count');
+
+			$this->dbforge->create_table('apps', TRUE);
+		}
+
+		// App_comments 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('app_comments'))
+		{
+			$this->dbforge->add_field(array(
+				'app_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'comment_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'member_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'nick_name' => array('type' => 'VARCHAR', 'constraint' => 100),
+				'content' => array('type' => 'VARCHAR', 'constraint' => 250),
+				'rating_score' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'regdate' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE)
+			));
+
+			$this->dbforge->add_key('commend_id', TRUE);
+			$this->dbforge->add_key('regdate');
+			$this->dbforge->add_key('app_id');
+
+
+			$this->dbforge->create_table('apps', TRUE);
+		}
+
+
+		// App_datas 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('app_datas'))
+		{
+			$this->dbforge->add_field(array(
+				'app_id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE),
+				'member_no' => array('type' => 'INT', 'constraint' => 11, 'unsinged' => TRUE),
+				'data' => array('type' => 'TEXT')
+			));
+
+			$this->dbforge->add_key(array('app_id', 'member_no'));
+
+			$this->dbforge->create_table('apps', TRUE);
+		}
+
+		// Members 테이블이 생성되어 있지 않으면 생성합니다
+		if (!$this->db->table_exists('members'))
+		{
+			$this->dbforge->add_field(array(
+				'member_no' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+				'user_id' => array('type' => 'varchar', 'constraint' => 250),
+				'password' => array('type' => 'varchar', 'constraint' => 250),
+				'email_address' => array('type' => 'varchar', 'constraint' => 250),
+				'email_id' => array('type' => 'varchar', 'constraint' => 250),
+				'email_host' => array('type' => 'varchar', 'constraint' => 250),
+				'nick_name' => array('type' => 'varchar', 'constraint' => 250),
+				'joindate' => array('type' => 'INT', 'constraint' => 11)
+			));
+
+			$this->dbforge->add_key('member_no', TRUE);
+			$this->dbforge->add_key('user_id');
+			$this->dbforge->add_key('joindate');
+
+			$this->dbforge->create_table('members', TRUE);
+		}
+
 		// DB 파일 생성 후 이동할 페이지
 		$returnUrl = base_url('install/step/4/');
 
 		redirect($returnUrl);
-	}
-
-	public function procInstall()
-	{
-		$this->load->dbforge();
-
-		//Apps 테이블이 생성되어 있지 않으면 생성합니다
-		if (!$this->db->table_exists('apps'))
-		{
-			$this->dbforge->add_field(array(
-				'id' => array('type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE),
-				'app_name' => array('type' => 'varchar', 'constraint' => 250)
-			));
-
-			$this->dbforge->create_table('apps', TRUE);
-		}
 	}
 
 	/**

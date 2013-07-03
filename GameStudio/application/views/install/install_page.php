@@ -9,6 +9,4 @@
 		<div class="text-center">
 			<a href="<?php echo $base_url; ?>install/step/2" class="btn btn-success">다음 <i class="icon-chevron-right icon-white"></i></a>
 		</div>
-
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 <?php include '_install_page_footer.php'; ?>

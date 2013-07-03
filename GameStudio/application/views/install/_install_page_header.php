@@ -4,26 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 	<title>GameStudio 설치</title>
-<?php
-		if(count($this->_loaded_css_files) > 0) {	
-			foreach($this->_loaded_css_files as $cssfile => $val) {
-?>
-	<link rel="stylesheet" href="<?php echo $cssfile; ?>" media="<?php echo $val['media']; ?>">
-<?php
-			}
-		}
-
-		if(count($this->_loaded_js_files) > 0) {	
-			foreach($this->_loaded_js_files as $jsfile => $val) {
-?>
-	<script src="<?php echo $jsfile; ?>"></script>
-<?php
-			}
-		}
-?>
-	<script>
-	var default_url = '<?php echo base_url(); ?>';
-	</script>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+	<link rel="stylesheet" href="<?php echo $base_url; ?>application/css/install.css">
+	<link rel="stylesheet" href="<?php echo $base_url; ?>application/third_party/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo $base_url; ?>application/third_party/bootstrap/css/bootstrap-responsive.min.css">
 </head>
 <body>
 	<div class="navbar navbar-fixed-top navbar-inverse">

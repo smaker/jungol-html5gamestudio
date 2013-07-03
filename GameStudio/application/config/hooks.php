@@ -10,7 +10,7 @@
 |
 */
 
-$hook['post_controller'] = array(
+$hook['post_controller_constructor'] = array(
 	'class'    => 'GSLoader',
 	'function' => 'Session',
 	'filename' => 'GSLoader.php',

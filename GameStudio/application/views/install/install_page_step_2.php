@@ -25,5 +25,4 @@
 		<a href="<?php echo site_url('install/step/3/'); ?>"<?php if(!$php_supported || !$mysql_supported) { ?> onclick="return false;"<?php } ?> class="btn btn-inverse<?php if(!$php_supported || !$mysql_supported) { ?> btn-disabled<?php } ?>">다음 <i class="icon-chevron-right icon-white"></i></a>
 
 		<div class="clearfix"></div>
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 <?php include '_install_page_footer.php'; ?>

@@ -1,0 +1,15 @@
+#memberModule .login { margin:0 auto; padding:12px; width:274px; border:1px solid #CFCFCF; border-radius:8px;}
+#memberModule .login dl { margin:0; }
+#memberModule .login dt,
+#memberModule .login dd { line-height:30px; vertical-align:middle;}
+
+#memberModule .login dt { float:left; }
+#memberModule .login dd { float:right; }
+
+#memberModule .login dt label { margin:5px 0; }
+
+.login form { position:relative; }
+/*.memberLogin dl{ margin:0; padding:0; zoom:1;}*/
+.login form dl:after{ content:""; display:block; clear:both;}
+.login form dt { float:left; font-weight:bold; zoom:1;}
+.login form dd { float:right; }

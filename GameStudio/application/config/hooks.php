@@ -9,10 +9,9 @@
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
-
 $hook['post_controller_constructor'] = array(
 	'class'    => 'GSLoader',
-	'function' => 'Session',
+	'function' => 'DBConnection',
 	'filename' => 'GSLoader.php',
 	'filepath' => 'hooks',
 );

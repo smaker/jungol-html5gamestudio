@@ -14,37 +14,37 @@
 			<div class="control-groups">
 				<label class="control-label" for="db_hostname">DB 호스트네임</label>
 				<div class="controls">
-					<input type="text" id="db_hostname" name="db_hostname" value="localhost" placeholder="DB 호스트네임" data-itemname="DB 호스트네임" required<?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="text" id="db_hostname" name="db_hostname" value="localhost" placeholder="DB 호스트네임" title="DB 호스트네임" required<?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">
 				<label class="control-label" for="db_port">DB Port</label>
 				<div class="controls">
-					<input type="number" id="db_port" name="db_port" value="3306" min="0" max="65535" placeholder="DB Port" data-itemname="DB Port"<?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="number" id="db_port" name="db_port" value="3306" min="0" max="65535" placeholder="DB Port" title="DB Port"<?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">
 				<label class="control-label" for="db_userid">DB 아이디</label>
 				<div class="controls">
-					<input type="text" id="db_userid" name="db_userid" value="" placeholder="DB 아이디" required<?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="text" id="db_userid" name="db_userid" value="" placeholder="DB 아이디" title="DB 아이디" required<?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">
 				<label class="control-label" for="db_password">DB 비밀번호</label>
 				<div class="controls">
-					<input type="password" id="db_password" name="db_password" value="" placeholder="DB 비밀번호" required<?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="password" id="db_password" name="db_password" value="" placeholder="DB 비밀번호" title="DB 비밀번호" required<?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">
 				<label class="control-label" for="db_prefix">테이블 머릿말</label>
 				<div class="controls">
-					<input type="text" id="db_prefix" name="db_prefix" value="gs" placeholder="테이블 머릿말" <?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="text" id="db_prefix" name="db_prefix" value="gs_" placeholder="테이블 머릿말" title="테이블 머릿말" <?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">
 				<label class="control-label" for="db_database">DB 이름</label>
 				<div class="controls">
-					<input type="password" id="db_database" name="db_database" value="" placeholder="DB 이름" required<?php if(!$permission) { ?> disabled<?php } ?>>
+					<input type="text" id="db_database" name="db_database" value="" placeholder="DB 이름" title="DB 이름" required<?php if(!$permission) { ?> disabled<?php } ?>>
 				</div>
 			</div>
 			<div class="control-groups">

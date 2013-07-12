@@ -4,7 +4,7 @@
 			<div class="control-groups">
 				<label class="control-label" for="user_id">아이디</label>
 				<div class="controls">
-					<input type="text" id="user_id" name="user_id" value="" placeholder="아이디" data-itemname="아이디" required>
+					<input type="text" id="user_id" name="user_id" value="admin" placeholder="아이디" data-itemname="아이디" required>
 				</div>
 			</div>
 			<div class="control-groups">
